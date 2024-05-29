@@ -1,0 +1,500 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #023e7c;
+  font-family: "PT Sans", sans-serif;
+  background-image: url("images/transparent-square-tiles.png");
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  position: sticky;
+  z-index: 5;
+  top: 0;
+}
+
+#hamburger__icon {
+  display: none;
+}
+
+.inner-container {
+  background-color: #8cc739;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0px 10px 50px;
+}
+
+.inner-container img {
+  width: 150px;
+  margin: 10px 0px;
+}
+
+nav {
+  display: flex;
+  background-color: #86bd33;
+  width: 100%;
+  height: 65px;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+}
+
+nav a,
+nav h1 {
+  color: white;
+  padding: 15px;
+  margin: 0 15px;
+  text-decoration: none;
+  position: relative;
+  font-family: "fira-sans", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.nav-text {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  max-height: 0px;
+  font-family: "fira-sans", Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-weight: bold;
+  overflow: hidden;
+  transition: max-height 0.8s ease;
+}
+
+.nav-text-open {
+  max-height: 1000px;
+}
+
+.nav-text h2:hover {
+  background-color: #005290;
+  cursor: pointer;
+}
+
+.nav-text h2 {
+  padding: 10px;
+  box-sizing: border-box;
+  transition: all ease-in-out 0.3s;
+}
+
+.nav-text button {
+  transition: all ease-in-out 0.3s;
+}
+
+.nav-text button:hover {
+  background-color: #005290;
+  cursor: pointer;
+}
+
+.nav-text button,
+h2 {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+  padding: 10px 30px;
+  background-color: #7fcc14;
+  width: 100%;
+  border: none;
+}
+
+#shopping-cart {
+  margin: 5px;
+  height: 35px;
+  width: 31px;
+}
+
+@media (max-width: 768px) {
+  header {
+    width: 100%;
+    position: relative;
+  }
+
+  #hamburger__icon {
+    display: block;
+    width: 20px;
+  }
+
+  .inner-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  nav {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    flex-direction: column;
+    padding-top: 20px;
+    overflow-y: auto;
+    flex-wrap: nowrap;
+  }
+  .nav-text {
+    position: relative;
+    top: 0;
+    overflow-y: auto;
+    left: 0;
+  }
+  nav.open {
+    right: 0;
+  }
+
+  .nav-text {
+    width: 100%;
+  }
+
+  .inner-container {
+    justify-content: space-around;
+  }
+
+  .nav-text-open form button {
+    width: 100%;
+  }
+}
+
+.Products__Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  background-color: white;
+  width: 80%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.705);
+}
+
+.Products__Container h1 {
+  background-color: #8cc739;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0px;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.Products__Container img {
+  margin: 10px 0px;
+}
+
+.Paragraph__container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Paragraph__container h1 {
+  background-color: #f2f2f2;
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  padding: 10px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.146);
+}
+
+.paragraph {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.146);
+  border-radius: 20px;
+  margin: 15px;
+}
+
+.paragraph p {
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+  padding: 10px;
+}
+
+.paragraph h1 {
+  text-align: center;
+  font-size: 0.8rem;
+  color: black;
+  border-radius: 20px 20px 0 0;
+}
+
+.paragraph img {
+  width: 200px;
+}
+
+.p__container {
+  display: flex;
+  height: 80%;
+}
+
+.main__information__style {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 15px;
+}
+.container-endpage {
+  background-color: #005290;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: space-around;
+}
+
+.item-endpage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 250px;
+  margin: 15px 20px;
+}
+
+.item-endpage img {
+  width: 200px;
+}
+
+.item-endpage h3 {
+  margin: 0 0 8px;
+  color: #7fcc14;
+}
+
+.item-endpage p {
+  margin: 13.6px 0;
+  color: white;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.3em;
+  font-weight: 400;
+}
+
+#dubai-format {
+  margin: 13.6px 0;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.3em;
+  font-weight: 400;
+}
+
+#dubai-format a {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  line-height: 1.3em;
+  width: fit-content;
+}
+
+#dubai-format a:hover {
+  color: #7fcc14;
+}
+
+.email_bar {
+  background-color: white;
+  margin: 0 0 20px;
+  padding: 8px 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.email_bar input {
+  width: 70%;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+.send-button {
+  font-weight: bold;
+  background-color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #005280;
+  text-decoration: none;
+  font-family: "fira-sans", Arial, Helvetica, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.accept-button-container {
+  display: flex;
+  font-family: "roboto", Arial, Helvetica, sans-serif;
+  color: white;
+  padding: 10px 0;
+  align-items: center;
+}
+
+.accept-button-container label {
+  color: white;
+  padding-left: 5px;
+  font-size: 14.4px;
+}
+
+#checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+footer {
+  background-color: #005290;
+  display: flex;
+  width: 80%;
+}
+
+footer p {
+  font-family: "robot", Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: white;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 50px;
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+  header {
+    width: 100%;
+    position: relative;
+  }
+
+  #hamburger__icon {
+    display: block;
+    width: 20px;
+  }
+
+  .inner-container {
+    width: 100%;
+    padding: 0;
+  }
+
+  nav {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100%;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    flex-direction: column;
+    padding-top: 20px;
+    overflow-y: auto;
+    flex-wrap: nowrap;
+  }
+  .nav-text {
+    position: relative;
+    top: 0;
+    overflow-y: auto;
+    left: 0;
+  }
+  nav.open {
+    right: 0;
+  }
+
+  .nav-text {
+    width: 100%;
+  }
+
+  .inner-container {
+    justify-content: space-around;
+  }
+
+  .nav-text-open form button {
+    width: 100%;
+  }
+
+  .Products__Container h1 {
+    padding: 10px;
+  }
+  nav {
+    flex-direction: column;
+    border-radius: 0;
+  }
+
+  .nav__icons,
+  .nav__text {
+    font-size: 18px;
+    padding: 8px;
+  }
+
+  .Products__Container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  .Products__Container h1 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .Paragraph__container {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .paragraph {
+    width: 100%;
+  }
+
+  .footer-container {
+    flex-direction: column;
+  }
+
+  .footer-container img {
+    margin: 10px 0;
+  }
+
+  .container-endpage {
+    width: 100%;
+  }
+
+  .item-endpage {
+    margin-right: 120px;
+  }
+
+  .footer-container {
+    padding: 15px 0;
+  }
+
+  footer {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1200px) {
+  nav {
+    height: 100%;
+  }
+}

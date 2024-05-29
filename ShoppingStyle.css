@@ -1,0 +1,245 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Fira Sans", sans-serif;
+  background-color: rgb(244, 244, 249);
+}
+
+header {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+}
+
+#shopping__cart__img {
+  width: 40px;
+}
+
+nav {
+  background-color: #005290;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.nav__icons {
+  width: 30px;
+  color: white;
+  font-size: 24px;
+  transition: all ease-in-out 0.3s;
+  padding: 10px;
+}
+
+.nav__icons:hover {
+  transform: scale(1.1);
+}
+
+.container__grid {
+  display: flex;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.grid__products__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.grid__item {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  transition: transform 0.3s;
+}
+
+.grid__item:hover {
+  transform: translateY(-10px);
+}
+
+.img__product__wrapper {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img__product {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.button__add__to__cart {
+  width: 100%;
+  padding: 10px;
+  background-color: #005290;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button__add__to__cart:hover {
+  background-color: #02345a;
+}
+
+.cart__message__added__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  margin: auto;
+  margin-top: 40px;
+  background-color: white;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.modal__container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal__container.active {
+  display: flex;
+}
+
+.modal__product {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal__product__img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.product__description {
+  margin-bottom: 20px;
+}
+
+.cross__img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.cross__img:hover {
+  opacity: 1;
+}
+
+.learn__more__button {
+  padding: 15px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: #005290;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin: 10px;
+}
+
+.learn__more__button:hover {
+  letter-spacing: 2px;
+  background-color: #004175;
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.learn__more__button:active {
+  background-color: #00325a;
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(5px);
+  transition: 0.1s;
+}
+
+footer {
+  background-color: #005290;
+  display: flex;
+  width: 80%;
+}
+
+footer p {
+  font-family: "robot", Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: white;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 50px;
+  width: 80%;
+}
+
+@media (max-width: 768px) {
+  .container__grid {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid__products__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 5px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .grid__item {
+    width: 90%;
+    margin: 15px 0;
+  }
+
+  footer {
+    width: 100%;
+  }
+
+  .button__add__to__cart {
+    display: flex;
+  }
+
+  .modal__container {
+    z-index: 150;
+  }
+}

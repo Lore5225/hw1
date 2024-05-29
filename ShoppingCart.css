@@ -1,0 +1,316 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #023e7c;
+  font-family: "Ubuntu", sans-serif;
+  background-image: url("https://www.transparenttextures.com/patterns/axiom-pattern.png");
+  overflow-x: hidden;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+#shopping__cart__img {
+  width: 40px;
+  cursor: pointer;
+}
+
+#shopping__cart__img:hover {
+  background-color: #86bd33;
+}
+
+nav {
+  background-color: #005290;
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  justify-content: space-around;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.nav__icons {
+  width: 30px;
+  color: white;
+  font-size: 24px;
+  transition: all ease-in-out 0.3s;
+  padding: 10px;
+}
+
+.nav__icons:hover,
+.nav__text:hover {
+  transform: scale(1.1);
+}
+
+.nav__text {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+  text-decoration: none;
+  transition: all ease-in-out 0.3s;
+  padding: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.cart__container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 10px 10px 10px black;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.information__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img__product__wrapper {
+  width: 20%;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img__product__wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.title__cart {
+  font-size: 25px;
+  background-color: #86bd33;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.title__cart p {
+  margin: 0;
+  padding: 0;
+}
+
+.products__wrap {
+  display: flex;
+  background-color: #f9f9f9;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product__container {
+  display: flex;
+  min-width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 10px;
+  box-shadow: 0 2px 4px black;
+}
+
+.product__img {
+  width: 75px;
+  box-shadow: 5px 2px 4px black;
+}
+
+.product__tot__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+.product__total {
+  font-weight: bold;
+}
+
+.product__text {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+  width: 300px;
+}
+
+.product__quantity {
+  font-size: 18px;
+  color: #555;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+}
+
+.quantity__container {
+  display: flex;
+  justify-content: space-around;
+  width: 20%;
+}
+
+.quantity__container img {
+  width: 20px;
+  border-radius: 30px;
+  margin: 0px 10px;
+}
+
+.quantity__container img:hover {
+  background-color: blue;
+  cursor: pointer;
+}
+
+.cart__bottom {
+  width: 100%;
+  background-color: #86bd33;
+  padding: 10px 0px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart__bottom p {
+  margin: 10px;
+  font-weight: bold;
+}
+
+.button__checkout {
+  cursor: pointer;
+  font-weight: 700;
+  font-family: Helvetica, "sans-serif";
+  transition: all 0.2s;
+  padding: 10px 20px;
+  border-radius: 100px;
+  background: #cfef00;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin: 0px 10px;
+}
+
+.button__checkout:hover {
+  background: #c4e201;
+}
+
+.button__checkout img {
+  width: 30px;
+  margin-left: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button__checkout:hover img {
+  transform: translateX(5px);
+}
+
+.button__checkout:active {
+  transform: scale(0.95);
+}
+
+.link__checkout {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    align-items: flex-start;
+  }
+
+  nav {
+    width: 100%;
+    flex-direction: column;
+    border-radius: 0;
+    margin-bottom: 10px;
+  }
+
+  .nav__icons,
+  .nav__text {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .cart__container {
+    width: 100%;
+    box-shadow: none;
+    margin-top: 10px;
+  }
+
+  .title__cart {
+    font-size: 20px;
+    padding: 10px 0;
+  }
+
+  .products__wrap {
+    width: 100%;
+  }
+
+  .product__total {
+    text-align: center;
+  }
+
+  .product__container {
+    flex-direction: column;
+    min-width: 100%;
+    box-shadow: none;
+  }
+
+  .img__product__wrapper {
+    margin-bottom: 10px;
+  }
+
+  .product__img {
+    width: 100px;
+  }
+
+  .product__text,
+  .product__tot__container,
+  .quantity__container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .quantity__container {
+    justify-content: center;
+  }
+
+  .cart__bottom {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .cart__bottom p {
+    margin: 5px 0;
+  }
+
+  .button__checkout {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .button__checkout img {
+    width: 20px;
+  }
+}
