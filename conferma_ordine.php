@@ -1,13 +1,17 @@
 <?php
-if (!isset($_GET['id_ordine'])) {
-    header("Location: index.php");
-    exit; 
+session_start();
 
-    
+
+if (!isset($_SESSION['id_ordine'])) {
+    header("Location: index.php");
+    exit;
 }
+
 require_once 'dbConfig.php';
 $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']) or die(mysqli_error($conn));
-$id_ordine = $_GET['id_ordine'];
+
+$id_ordine = mysqli_real_escape_string($conn, $_SESSION['id_ordine']);
+
 
 $query_order_information = "SELECT o.nome, o.cognome, o.indirizzo, o.codice_postale, o.numero_telefono, op.quantità, op.prezzo_totale, p.nome AS nome_prodotto
         FROM Ordini o
@@ -43,18 +47,6 @@ if (mysqli_num_rows($result) > 0) {
 
     $resultEmail = mail($cliente_email, $subject, $message, "From: tecnovagroup@gmail.com");
 
-    if ($resultEmail) {
-        echo "<h1 class = 'confirm__message'>";
-        echo "Email di conferma inviata con successo a $cliente_email";
-        echo "</h1>";
-    } else {
-        echo "Errore durante l'invio dell'email.";
-    }
-} else {
-    echo "Errore.";
-}
-
-mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +60,24 @@ mysqli_close($conn);
 </head>
 <body>
     <div class="message-box">
-    <h1>Ordine n. <?php echo $_GET['id_ordine'] ?></h1>
+    <h1> <?php     
+    if ($resultEmail) {
+        $query_update_flag = "UPDATE Ordini SET email_inviata = 1 WHERE id_ordine = $id_ordine";
+        mysqli_query($conn, $query_update_flag);
+        unset($_SESSION['id_ordine']);
+        mysqli_close($conn);
+        echo "<h1 class='confirm__message'>";
+        echo "Email di conferma inviata con successo a $cliente_email per l'ordine numero:" . $id_ordine;
+        echo "</h1>";
+    } else {
+        echo "<h1 class='confirm__message'>";
+        echo "Errore di invio dell'email all'indirizzo $cliente_email";
+        echo "</h1>";
+    }
+} else {
+    echo "Errore.";
+}
+ ?></h1>
         <p>Ti reindirizziamo alla home...</p>
     </div>
 </body>
