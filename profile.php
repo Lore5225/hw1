@@ -55,7 +55,7 @@ while ($row = mysqli_fetch_assoc($res_orders)) {
             <p>Username:</strong> <?php echo $user_info['username']; ?></p>
             <p>Email:</strong> <?php echo $user_info['email']; ?></p>
             <p>Numero di Ordini:</strong> <?php echo $total_orders; ?></p>
-            <button> <a href="ForgotPassword.php"> Cambia Password</a></button>
+            <a href="ForgotPassword.php"> <button>Cambia Password </button></a>
         </div>
 
         <div class="orders-info hidden">

@@ -1,10 +1,6 @@
 <?php
 require_once 'LoggedCheck.php';
 
-if ($username = checkAuth()) {
-    header("Location: index__logged.php");
-    exit;
-}
 
 if (!isset($_GET['token']) || !isset($_GET['email'])) {
     header("Location: index.php");

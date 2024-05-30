@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     if (mysqli_query($conn, $queryToken)) {
         ini_set('SMTP', 'smtp.gmail.com');
         ini_set('smtp_port', 25);
-        $reset_password_link = "https://localhost/reset_password.php?token=$token&email=" . urlencode($email);
+        $reset_password_link = "https://localhost/reset_password.php?token=" . urlencode($token) . "&email=" . urlencode($email);
         $subject = "Reset Password";
         $message = "Gentile cliente,\n\nPer reimpostare la tua password, utilizza il seguente link: $reset_password_link";
         $headers = "From: tecnovagroup@gmail.com"; 
