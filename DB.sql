@@ -16,6 +16,9 @@ CREATE TABLE password_reset (
 
 
 
+
+
+
 CREATE TABLE prodotti (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
