@@ -8,6 +8,7 @@ require_once 'dbconfig.php';
 require_once 'LoggedCheck.php';
 
 $email = '';
+$status = '';
 if (checkAuth()) {
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']) or die(mysqli_error($conn));
     
@@ -29,22 +30,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     if (mysqli_query($conn, $queryToken)) {
         ini_set('SMTP', 'smtp.gmail.com');
         ini_set('smtp_port', 25);
-        $reset_password_link = "https://localhost/reset_password.php?token=$token&email=" . $email;
+        $reset_password_link = "https://localhost/reset_password.php?token=$token&email=" . urlencode($email);
         $subject = "Reset Password";
         $message = "Gentile cliente,\n\nPer reimpostare la tua password, utilizza il seguente link: $reset_password_link";
         $headers = "From: tecnovagroup@gmail.com"; 
     
-        mail($email, $subject, $message, $headers);
-        
-        header("Location: " . $_SERVER['PHP_SELF'] . "?status=success&email=" . $email);
-        exit;
+        if (mail($email, $subject, $message, $headers)) {
+            header("Location: ConfirmEmailReset.php?status=success&email=" . urlencode($email));
+            exit;
+        } else {
+            header("Location: ConfirmEmailReset.php?status=error&email=" . urlencode($email));
+            exit;
+        }
+
     } else {
-        header("Location: " . $_SERVER['PHP_SELF'] . "?status=error");
+        header("Location: ConfirmEmailReset.php?status=error&email=" . urlencode($email));
         exit;
     }
     mysqli_close($conn);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="it">
@@ -62,14 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
             <img src="logo.jpeg" id="logo-img" alt="">
             <h1>Inserisci l'email dell'account</h1>
             <h1>Ti manderemo un'email di reset della password</h1>
-            <?php
-            if (isset($_GET['status']) && $_GET['status'] == 'success') {
-                $email = $_GET['email'];
-                echo "<p>Email di reset della password inviata con successo a $email. N.B Il link scade tra 15 minuti.</p>";
-            } elseif (isset($_GET['status']) && $_GET['status'] == 'error') {
-                echo "<p>Errore durante l'invio della email. Riprova più tardi.</p>";
-            }
-            ?>
             <form name="login_form" method="post" id="form-style">
                 <label for="email">Email</label>
                 <input type="email" required name="email" id="email" value="<?php echo htmlspecialchars($email); ?>" class="input-style" placeholder="Inserisci Email">
