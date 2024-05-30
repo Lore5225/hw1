@@ -5,11 +5,11 @@ if (isset($_GET['status']) && isset($_GET['email']) && $_GET['status'] == 'succe
     header("Location: index.php");
     exit;
 } else if (isset($_GET['status']) && isset($_GET['email']) && $_GET['status'] == 'error') {
-    $message = "Errore durante l'invio dell'email di reset all'indirizzo, riprova più tardi " . htmlspecialchars($_GET['email']);
+    $message = "Errore durante l'invio dell'email di reset all'indirizzo " . ($_GET['email']) . " riprova più tardi " ;
 }
 ?>
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it">    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

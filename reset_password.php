@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $delete_query = "DELETE FROM password_reset WHERE email = '$email'";
             mysqli_query($conn, $delete_query);
 
-            header("Location: changed__password.php?q=$email");
+            header("Location: changed__password.php?q=" . urlencode($email));
             exit;
         } else {
             $errore[] = "Errore nell'aggiornamento della password" . mysqli_error($conn);

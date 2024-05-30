@@ -46,7 +46,7 @@ if (mysqli_num_rows($result) > 0) {
     $subject = "Conferma ordine";
 
     $resultEmail = mail($cliente_email, $subject, $message, "From: tecnovagroup@gmail.com");
-
+    mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -62,10 +62,7 @@ if (mysqli_num_rows($result) > 0) {
     <div class="message-box">
     <h1> <?php     
     if ($resultEmail) {
-        $query_update_flag = "UPDATE Ordini SET email_inviata = 1 WHERE id_ordine = $id_ordine";
-        mysqli_query($conn, $query_update_flag);
         unset($_SESSION['id_ordine']);
-        mysqli_close($conn);
         echo "<h1 class='confirm__message'>";
         echo "Email di conferma inviata con successo a $cliente_email per l'ordine numero:" . $id_ordine;
         echo "</h1>";
