@@ -32,9 +32,9 @@ function onJSONProducts(products) {
       event.stopPropagation();
       const formData = new FormData();
       formData.append("id", product.id);
-      fetch("addtocart.php", { method: "post", body: formData }).then(
-        onResponse
-      );
+      fetch("addtocart.php", { method: "post", body: formData })
+        .then(onResponse)
+        .then(onJsonCart);
     });
 
     productItem.addEventListener("click", () => {
@@ -103,26 +103,31 @@ function showProductModal(product) {
 let messageContainer;
 
 function onResponse(response) {
-  if (response.ok) {
-    if (!messageContainer) {
-      messageContainer = document.createElement("div");
-      messageContainer.classList.add("cart__message__added__container");
-      document.body.appendChild(messageContainer);
-    } else return null;
+  if (!response.ok) {
+    return null;
+  } else return response.json();
+}
 
-    if (!document.querySelector(".cart__message__added")) {
-      const cartAddedMessage = document.createElement("div");
-      cartAddedMessage.textContent = "Aggiunto al carrello!";
-      cartAddedMessage.classList.add("cart__message__added");
-      messageContainer.appendChild(cartAddedMessage);
+function onJsonCart(json) {
+  if (!messageContainer) {
+    messageContainer = document.createElement("div");
+    messageContainer.classList.add("cart__message__added__container");
+    document.body.appendChild(messageContainer);
+  } else return null;
 
-      setTimeout(() => {
-        messageContainer.removeChild(cartAddedMessage);
-        if (messageContainer.childElementCount === 0) {
-          document.body.removeChild(messageContainer);
-          messageContainer = null;
-        }
-      }, 3000);
-    }
+  if (!document.querySelector(".cart__message__added")) {
+    const cartAddedMessage = document.createElement("div");
+    if (json.success) cartAddedMessage.textContent = "Aggiunto al carrello!";
+    else cartAddedMessage.textContent = json.error;
+    cartAddedMessage.classList.add("cart__message__added");
+    messageContainer.appendChild(cartAddedMessage);
+
+    setTimeout(() => {
+      messageContainer.removeChild(cartAddedMessage);
+      if (messageContainer.childElementCount === 0) {
+        document.body.removeChild(messageContainer);
+        messageContainer = null;
+      }
+    }, 3000);
   }
 }

@@ -10,14 +10,6 @@
 
 
 
-<?php
-     require_once 'LoggedCheck.php';
-     if (!$username = checkAuth()) {
-         header("Location: login__section.php");
-         exit;
-     }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

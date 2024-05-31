@@ -8,7 +8,8 @@
 
 
 <?php
-    if(isset($_POST["username"]) && isset($_POST["password"]))
+
+    if(!empty($_POST["username"]) && !empty($_POST["password"]))
     {
         $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']) or die(mysqli_error($conn));
         $username_or_email = mysqli_real_escape_string($conn, $_POST["username"]);
@@ -30,12 +31,15 @@
             }
             else
             {
-                $errore = true;
+                $errore = "Errore: username o password errati.";
             }
         } else {
-            $errore = true;
+            $errore = "Errore: username o password errati.";
         }
-    } 
+    }
+    else if (isset($_POST["username"]) || isset($_POST["password"])) {
+        $error = "Tutti i campi sono obbligatori.";
+    }
 ?>
 
 
@@ -54,10 +58,10 @@
     <div class="login-transition-left-to-right">
         <div id="login-wrap">
             <img src="logo.jpeg" id="logo-img" alt="">
-            <h1>Effettua la Registrazione!</h1>
+            <h1>Effettua il login</h1>
             <?php if (isset($errore)) {
                     echo "<p class='query-error'>";
-                    echo "Errore: username o password errati.";
+                    echo $errore;
                     echo "</p>";
                 }
                 ?>

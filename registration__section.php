@@ -9,17 +9,15 @@
 
 <?php
  $errore = array();
-if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["repeat_password"]) && isset($_POST["terms"]))
+if(!empty($_POST["username"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["repeat_password"]) && !empty($_POST["terms"]))
 {
     $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password'], $dbconfig['name']) or die(mysqli_error($conn));
     $username = mysqli_real_escape_string($conn, $_POST["username"]);
     $email = mysqli_real_escape_string($conn, $_POST["email"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
     $repeat_password = mysqli_real_escape_string($conn, $_POST["repeat_password"]);
-
-    if(empty($username) || empty($email) || empty($password) || empty($repeat_password)) {
-        $errore[] = "Tutti i campi sono obbligatori.";
-    } else if ($password !== $repeat_password) {
+    
+    if ($password !== $repeat_password) {
         $errore[] = "Le password non corrispondono.";
     } 
     else if (!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/', $password)) {
@@ -57,6 +55,8 @@ if(isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["password
             }
         }
     }
+}   else if (isset($_POST["username"]) || isset($_POST["email"]) || isset($_POST["password"]) || isset($_POST["repeat_password"]) || isset($_POST["terms"])) {
+        $error = array("Tutti i campi sono obbligatori.");
 }
 ?>
 
