@@ -8,7 +8,6 @@ function onResponse(response) {
 }
 
 function OnJson(json) {
-  console.log(json);
   const MainContainer = document.querySelector(".checkout__container");
   const ProductContainer = document.createElement("div");
   ProductContainer.classList.add("cart__items__container");

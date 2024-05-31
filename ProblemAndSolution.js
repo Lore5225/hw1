@@ -50,7 +50,6 @@ function OnResponse(response) {
 }
 
 function OnJson(json) {
-  console.log(json);
   const immagini = json.immagini;
   const paragrafi = json.paragrafi;
   const titoli = json.titoli;

@@ -11,7 +11,6 @@ function responseProducts(response) {
 }
 
 function onJSONProducts(json) {
-  console.log(json);
 
   const Titoli = json.titoli;
   const Paragrafi = json.paragrafi;

@@ -97,12 +97,9 @@ function onYoutubeSuccess(response) {
 }
 
 function OnJsonYoutube(json) {
-  console.log(json);
   const cellVideo = document.querySelector(".video__container");
   let num_results = json.contents.length;
-  console.log(json.contents.length);
   if (num_results > 3) num_results = 3;
-  console.log(num_results);
 
   for (let i = 0; i < num_results; i++) {
     const video_data = json.contents[i].video;
@@ -116,7 +113,6 @@ function OnJsonYoutube(json) {
     const video_url = document.createElement("a");
     video_url.href = "https://www.youtube.com/watch?v=" + video_data.videoId;
     video_url.target = "_blank";
-    console.log(video_url);
     const thumbnail_img = document.createElement("img");
     thumbnail_img.classList.add("thumbnail-img");
     thumbnail_img.src = thumbnail;

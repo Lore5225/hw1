@@ -8,11 +8,9 @@ function onResponse(response) {
 }
 
 function OnJson(json) {
-  console.log(json);
   const MainContainer = document.querySelector(".products__wrap");
   MainContainer.innerHTML = "";
   let totalPrice = 0;
-  console.log(json.length);
   if (json.length == 0) {
     const error = document.createElement("h1");
     error.textContent = "Nessun prodotto nel carrello!";
@@ -34,7 +32,7 @@ function OnJson(json) {
       nome.textContent = product.nome;
       nome.classList.add("product__text");
 
-      console.log(product.Totale);
+
       const przTotContainer = document.createElement("div");
       przTotContainer.classList.add("product__tot__container");
       const przTot = document.createElement("div");
@@ -115,7 +113,6 @@ function removeButton(idProduct) {
 }
 
 function OnAdded(response) {
-  console.log(response.json);
   if (!response.ok) return null;
   GetCart();
 }

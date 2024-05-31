@@ -21,7 +21,7 @@ if (mysqli_num_rows($result) == 0) {
     header("Location: index.php");
     exit;
 }
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if(isset($_POST["username"]) && isset($_POST["password"])) {
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
     $errore = array();
