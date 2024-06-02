@@ -6,8 +6,6 @@
     }
 ?>
 
-
-
 <?php
     require_once 'dbConfig.php';
 
@@ -35,23 +33,26 @@
             if (mysqli_query($conn, $query_add_order)) {
                 $id_ordine = mysqli_insert_id($conn);
 
-                $query_get_cart = "SELECT product, quantità, prezzo_totale FROM Carrello WHERE id_utente = $id_utente";
+                $query_get_cart = "SELECT id_prodotto, quantita_totale, prezzo_totale FROM Prodotti_Carrello WHERE id_carrello IN (SELECT id_carrello FROM Carrello WHERE id_utente = $id_utente)";
                 $result = mysqli_query($conn, $query_get_cart);
 
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        $product = $row['product'];
-                        $quantità = $row['quantità'];
+                        $id_prodotto = $row['id_prodotto'];
+                        $quantita_totale = $row['quantita_totale'];
                         $prezzo_totale = $row['prezzo_totale'];
 
                         $query_add_order_products = "INSERT INTO Ordini_Prodotti(id_ordine, id_prodotto, quantità, prezzo_totale) 
-                                                    VALUES ('$id_ordine', '$product', '$quantità', '$prezzo_totale')";
+                                                    VALUES ('$id_ordine', '$id_prodotto', '$quantita_totale', '$prezzo_totale')";
                         mysqli_query($conn, $query_add_order_products);
                     }
                 }
 
-                $query_clear_cart = "DELETE FROM Carrello WHERE id_utente = $id_utente";
+                $query_clear_cart = "DELETE FROM Prodotti_Carrello WHERE id_carrello IN (SELECT id_carrello FROM Carrello WHERE id_utente = $id_utente)";
                 mysqli_query($conn, $query_clear_cart);
+
+                $query_clear_main_cart = "DELETE FROM Carrello WHERE id_utente = $id_utente";
+                mysqli_query($conn, $query_clear_main_cart);
 
                 $_SESSION['id_ordine'] = $id_ordine;
 
@@ -65,4 +66,4 @@
 
         mysqli_close($conn);
     } else header("Location: index.php");
-    ?>
+?>

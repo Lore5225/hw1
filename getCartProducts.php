@@ -14,13 +14,14 @@ $USERNAME = mysqli_real_escape_string($conn, $_SESSION["username"]);
 
 $query = "
     SELECT 
-        p.id,
+        p.id AS id_prodotto,
         p.nome,
         p.immagine,
-        c.quantità AS Quantità,
-        c.prezzo_totale AS Totale
+        pc.quantita_totale AS Quantità,
+        pc.prezzo_totale AS Totale
     FROM prodotti p
-    JOIN Carrello c ON p.id = c.product
+    JOIN Prodotti_Carrello pc ON p.id = pc.id_prodotto
+    JOIN Carrello c ON pc.id_carrello = c.id_carrello
     JOIN registrazioni r ON c.id_utente = r.id
     WHERE r.username = '$USERNAME'
 ";

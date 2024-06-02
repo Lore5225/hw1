@@ -10,6 +10,7 @@ CREATE TABLE password_reset (
     email VARCHAR(255) NOT NULL,
     token VARCHAR(64) NOT NULL,
     expiration_date DATETIME NOT NULL,
+	index idxemail (email),
     FOREIGN KEY (email) REFERENCES registrazioni(email)
 );
 
@@ -62,7 +63,7 @@ VALUES ('Tecnovair', 'imgdb/tecnovair.jpg', "I dispositivi Tecnovair rientrano n
 
 
 CREATE TABLE schedaProdotti (
-    prodotto_id integer,
+    prodotto_id integer primary key,
     contenuto json,
     index idxprod (prodotto_id),
     FOREIGN KEY (prodotto_id) REFERENCES prodotti(id)
@@ -295,16 +296,28 @@ INSERT INTO schedaProdotti (
 }'
 );
 
+
 CREATE TABLE Carrello (
+    id_carrello INT PRIMARY KEY AUTO_INCREMENT,
     id_utente INT,
-    product INT,
-    quantità INT DEFAULT 0,
-    prezzo_totale FLOAT,
-    INDEX Iuid (id_utente),
-    INDEX Ipid (product),
-    FOREIGN KEY (id_utente) REFERENCES registrazioni(id),
-    FOREIGN KEY (product) REFERENCES prodotti(id)
+	index idxutente (id_utente),
+    FOREIGN KEY (id_utente) REFERENCES registrazioni(id)
 );
+
+CREATE TABLE Prodotti_Carrello (
+	id int auto_increment primary key,
+    id_carrello INT,
+    id_prodotto INT,
+    quantita_totale INT DEFAULT 0,
+    prezzo_totale FLOAT,
+	index idxcarrello (id_carrello),
+	index idxidprodotto (id_prodotto),
+    FOREIGN KEY (id_carrello) REFERENCES Carrello(id_carrello),
+    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id)
+);
+
+
+
 
 
 CREATE TABLE Ordini (
@@ -322,6 +335,7 @@ CREATE TABLE Ordini (
 );
 
 CREATE TABLE Ordini_Prodotti (
+	id int auto_increment primary key,
     id_ordine INT,
     id_prodotto INT,
     quantità INT,
@@ -334,7 +348,7 @@ CREATE TABLE Ordini_Prodotti (
 
 
 CREATE TABLE Soluzioni (
-    soluzioni_id integer,
+    soluzioni_id integer primary key,
     contenuto json
 );
 

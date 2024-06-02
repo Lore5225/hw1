@@ -17,7 +17,7 @@ function OnJson(json) {
     MainContainer.appendChild(error);
   } else {
     for (let product of json) {
-      let idProduct = product.id;
+      let idProduct = product.id_prodotto;
       const productItem = document.createElement("div");
       productItem.classList.add("product__container");
 
@@ -31,7 +31,6 @@ function OnJson(json) {
       const nome = document.createElement("div");
       nome.textContent = product.nome;
       nome.classList.add("product__text");
-
 
       const przTotContainer = document.createElement("div");
       przTotContainer.classList.add("product__tot__container");
@@ -103,18 +102,31 @@ function OnJson(json) {
 function addButton(idProduct) {
   const Data = new FormData();
   Data.append("id", idProduct);
-  fetch("addtocart.php", { method: "post", body: Data }).then(OnAdded);
+  console.log(Data);
+  fetch("addtocart.php", { method: "post", body: Data })
+    .then(OnAdded)
+    .then(OnJsonAddRemove);
 }
 
 function removeButton(idProduct) {
   const Data = new FormData();
   Data.append("id", idProduct);
-  fetch("RemoveItemCart.php", { method: "post", body: Data }).then(OnAdded);
+  fetch("RemoveItemCart.php", { method: "post", body: Data })
+    .then(OnAdded)
+    .then(OnJsonAddRemove);
 }
 
 function OnAdded(response) {
   if (!response.ok) return null;
-  GetCart();
+  return response.json();
+}
+
+function OnJsonAddRemove(json) {
+  if (json.success) {
+    GetCart();
+  } else if (json.error) {
+    console.error(json.error);
+  }
 }
 
 GetCart();
