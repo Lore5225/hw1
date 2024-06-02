@@ -1,7 +1,6 @@
 <?php
 require_once 'LoggedCheck.php';
 
-
 if (!isset($_GET['token']) || !isset($_GET['email'])) {
     header("Location: index.php");
     exit;
@@ -12,7 +11,6 @@ $conn = mysqli_connect($dbconfig['host'], $dbconfig['user'], $dbconfig['password
 $email = mysqli_real_escape_string($conn, $_GET['email']);
 $token = mysqli_real_escape_string($conn, $_GET['token']);
 
-
 $queryToken = "SELECT * FROM password_reset WHERE email = '$email' AND token = '$token' AND expiration_date > NOW()";
 
 $result = mysqli_query($conn, $queryToken);
@@ -21,7 +19,8 @@ if (mysqli_num_rows($result) == 0) {
     header("Location: index.php");
     exit;
 }
-   if(isset($_POST["username"]) && isset($_POST["password"])) {
+
+if (isset($_POST["password"]) && isset($_POST["repeat_password"])) {
     $password = $_POST['password'];
     $repeat_password = $_POST['repeat_password'];
     $errore = array();
@@ -38,21 +37,21 @@ if (mysqli_num_rows($result) == 0) {
 
         if (mysqli_query($conn, $update_query)) {
             $delete_query = "DELETE FROM password_reset WHERE email = '$email'";
-            mysqli_query($conn, $delete_query);
-
-            header("Location: changed__password.php?q=" . urlencode($email));
-            exit;
+            if (mysqli_query($conn, $delete_query)) {
+                header("Location: changed__password.php?q=" . urlencode($email));
+                exit;
+            } else {
+                $errore[] = "Errore nell'eliminazione del token di reset: " . mysqli_error($conn);
+            }
         } else {
-            $errore[] = "Errore nell'aggiornamento della password" . mysqli_error($conn);
+            $errore[] = "Errore nell'aggiornamento della password: " . mysqli_error($conn);
         }
     }
 }
 ?>
 
-
-
-
-<html>
+<!DOCTYPE html>
+<html lang="it">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,7 +59,6 @@ if (mysqli_num_rows($result) == 0) {
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <script src="ResetPassword.js" defer></script>
 </head>
-
 <body>
     <div class="login-transition-left-to-right">
         <div id="login-wrap">
@@ -76,7 +74,7 @@ if (mysqli_num_rows($result) == 0) {
             } ?>
 
             <form name="login_form" method="post" id="form-style">
-            <label for="password">Password</label>
+                <label for="password">Password</label>
                 <div class="pswrd-wrap">
                     <input type="password" required name="password" id="password" class="input-style" placeholder="Inserisci Password">
                     <img src="images/eye.png" id="toggle-pswrd" alt="">
