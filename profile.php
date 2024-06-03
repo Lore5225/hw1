@@ -51,10 +51,10 @@ while ($row = mysqli_fetch_assoc($res_orders)) {
         </nav>
         <div class="profile-info">
             <h2>Informazioni Profilo</h2>
-            <p>ID Utente:</strong> <?php echo $user_info['id']; ?></p>
-            <p>Username:</strong> <?php echo $user_info['username']; ?></p>
-            <p>Email:</strong> <?php echo $user_info['email']; ?></p>
-            <p>Numero di Ordini:</strong> <?php echo $total_orders; ?></p>
+            <p>ID Utente: <?php echo $user_info['id']; ?></p>
+            <p>Username: <?php echo $user_info['username']; ?></p>
+            <p>Email: <?php echo $user_info['email']; ?></p>
+            <p>Numero di Ordini: <?php echo $total_orders; ?></p>
             <a href="ForgotPassword.php"> <button>Cambia Password </button></a>
         </div>
 
@@ -64,21 +64,21 @@ while ($row = mysqli_fetch_assoc($res_orders)) {
                 <ul class="orders-list">
                     <?php foreach ($orders as $order): ?>
                         <li>
-                            <p>ID Ordine:</strong> <?php echo $order['id_ordine']; ?></p>
-                            <p>Data:</strong> <?php echo $order['data_ordine']; ?></p>
-                            <p>Nome:</strong> <?php echo $order['nome']; ?></p>
-                            <p>Cognome:</strong> <?php echo $order['cognome']; ?></p>
-                            <p>Indirizzo:</strong> <?php echo $order['indirizzo']; ?></p>
-                            <p>Codice Postale:</strong> <?php echo $order['codice_postale']; ?></p>
-                            <p>Numero di Telefono:</strong> <?php echo $order['numero_telefono']; ?></p>
-                            <p>Note:</strong> <?php echo $order['note']; ?></p>
+                            <p>ID Ordine: <?php echo $order['id_ordine']; ?></p>
+                            <p>Data: <?php echo $order['data_ordine']; ?></p>
+                            <p>Nome: <?php echo $order['nome']; ?></p>
+                            <p>Cognome: <?php echo $order['cognome']; ?></p>
+                            <p>Indirizzo: <?php echo $order['indirizzo']; ?></p>
+                            <p>Codice Postale: <?php echo $order['codice_postale']; ?></p>
+                            <p>Numero di Telefono: <?php echo $order['numero_telefono']; ?></p>
+                            <p>Note: <?php echo $order['note']; ?></p>
                             <button class="order-details-button">Dettagli ordine</button>
                             <div class="order__text">
                                 <?php foreach ($order['items'] as $item): ?>
                                     <div class="order__item">
-                                        <p>Prodotto:</strong> <?php echo $item['nome_prodotto']; ?></p>
-                                        <p>Quantità:</strong> <?php echo $item['quantità']; ?></p>
-                                        <p>Prezzo Totale:</strong> <?php echo $item['prezzo_totale']; ?></p>
+                                        <p>Prodotto: <?php echo $item['nome_prodotto']; ?></p>
+                                        <p>Quantità: <?php echo $item['quantità']; ?></p>
+                                        <p>Prezzo Totale: <?php echo $item['prezzo_totale']; ?></p>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
