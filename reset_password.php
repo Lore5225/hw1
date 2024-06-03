@@ -62,7 +62,7 @@ if (isset($_POST["password"]) && isset($_POST["repeat_password"])) {
 <body>
     <div class="login-transition-left-to-right">
         <div id="login-wrap">
-            <img src="logo.jpeg" id="logo-img" alt="">
+            <img src="images/logo.jpeg" id="logo-img" alt="">
             <h1>Inserisci le nuove credenziali.</h1>
 
             <?php if (isset($errore)) {
