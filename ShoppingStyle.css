@@ -212,8 +212,11 @@ footer p {
 }
 
 @media (max-width: 768px) {
-  .container__grid {
+  header {
     width: 100%;
+  }
+  .container__grid {
+    width: 80%;
     align-items: center;
     justify-content: center;
   }
@@ -221,14 +224,16 @@ footer p {
   .grid__products__container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 5px;
-    width: 90%;
-    margin: 0 auto;
+    gap: 25px;
+    width: 100%;
+    margin: auto;
   }
 
   .grid__item {
     width: 90%;
     margin: 15px 0;
+    justify-self: center;
+    align-self: center;
   }
 
   footer {
@@ -237,6 +242,7 @@ footer p {
 
   .button__add__to__cart {
     display: flex;
+    justify-content: center;
   }
 
   .modal__container {
