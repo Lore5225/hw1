@@ -6,12 +6,6 @@
     else $problemID = $_POST["Problem"];
 ?>
 
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +27,6 @@
   <img src="images/tecnova-group.png" alt="" />
 
 </div>
-
 
 <nav>
   <a href = "index.php"> Home</a>

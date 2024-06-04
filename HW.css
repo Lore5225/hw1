@@ -402,7 +402,7 @@ nav h1 {
   align-items: center;
   background-color: #19639b;
   border-radius: 6px;
-  width: 70%;
+  width: 65%;
   padding: 7px;
   margin-top: 20px;
   font-size: 18px;
@@ -417,6 +417,9 @@ nav h1 {
   color: white;
   cursor: pointer;
   transition: background 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .learn-about button:hover {
