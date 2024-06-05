@@ -1,3 +1,47 @@
+const form = document.getElementById("checkoutForm");
+const inputs = document.querySelectorAll("input[type='text']:not(#notes)");
+
+inputs.forEach(function (input) {
+  input.addEventListener("blur", function () {
+    const error = input.nextElementSibling;
+    if (input.value.trim() === "") {
+      showError(input, error, "Campo obbligatorio");
+    } else {
+      hideError(input, error);
+    }
+  });
+});
+
+form.addEventListener("submit", function (event) {
+  let hasVisibleErrors = false;
+
+  inputs.forEach(function (input) {
+    const error = input.nextElementSibling;
+    if (input.value.trim() === "" && input.id !== "notes") {
+      showError(input, error, "Campo obbligatorio");
+      hasVisibleErrors = true;
+    } else {
+      hideError(input, error);
+    }
+  });
+
+  if (hasVisibleErrors) {
+    event.preventDefault();
+  }
+});
+
+function showError(input, error, message) {
+  input.classList.add("error");
+  error.textContent = message;
+}
+
+function hideError(input, error) {
+  input.classList.remove("error");
+  error.textContent = "";
+}
+
+GetCart();
+
 function GetCart() {
   fetch("getCartProducts.php").then(onResponse).then(OnJson);
 }
@@ -8,13 +52,10 @@ function onResponse(response) {
 }
 
 function OnJson(json) {
-  const MainContainer = document.querySelector(".checkout__container");
-  const ProductContainer = document.createElement("div");
-  ProductContainer.classList.add("cart__items__container");
+  const ProductContainer = document.querySelector(".cart__items__container");
   for (product of json) {
     const ProductItem = document.createElement("div");
     ProductItem.classList.add("cart__item");
-
 
     const NameWrapper = document.createElement("div");
     NameWrapper.classList.add("txtContainer");
@@ -44,8 +85,4 @@ function OnJson(json) {
 
     ProductContainer.appendChild(ProductItem);
   }
-
-  MainContainer.appendChild(ProductContainer);
 }
-
-GetCart();
